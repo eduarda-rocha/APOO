@@ -8,11 +8,10 @@ public class BDEstoque {
 	
 	private List<Notebook> bdNotebook;
 	private List<Mouse> bdMouse;
-	//private List<Produtos> bdProdutos;
 	
 	private BDEstoque() {
-		bdNotebook = new ArrayList<>();
-		bdMouse = new ArrayList<>();
+		bdNotebook = new ArrayList<Notebook>();
+		bdMouse = new ArrayList<Mouse>();
 	}
 	
 	public static synchronized BDEstoque getInstance(){
@@ -30,4 +29,3 @@ public class BDEstoque {
 		return bdMouse;
 	}
 }
-	
