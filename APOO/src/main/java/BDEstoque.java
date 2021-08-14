@@ -26,7 +26,7 @@ public class BDEstoque {
 		return bdNotebook;
 	}
 	
-	public List <Mouse> getBdMouse(){
+	public List<Mouse> getBdMouse(){
 		return bdMouse;
 	}
 }
