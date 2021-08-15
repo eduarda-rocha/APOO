@@ -614,7 +614,7 @@ public class InterfaceEstoque extends javax.swing.JFrame {
     }//GEN-LAST:event_btSActionPerformed
 
     private void btConsultarNotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsultarNotActionPerformed
-        consultar();
+        consultarNot();
     }//GEN-LAST:event_btConsultarNotActionPerformed
 
     private void inputModeloNotActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_inputModeloNotActionPerformed
@@ -835,7 +835,7 @@ public class InterfaceEstoque extends javax.swing.JFrame {
         }
     }
 
-    public void consultar() {
+    public void consultarNot() {
         notebook = new Notebook();
 
         notebook.setModelo(inputModeloNot.getText());
@@ -854,6 +854,187 @@ public class InterfaceEstoque extends javax.swing.JFrame {
         modelo.insertRow(0,
                 new Object[] { notebook.getModelo(), notebook.getMarca(), notebook.getPreco(), notebook.getQtd() });
     }
+    
+      public void cadastrarMou() {
+        mouse = new Mouse();
+
+        mouse.setModelo(inputModeloMou.getText());
+
+        if (sistema.cons(mouse)) {
+            JOptionPane.showMessageDialog(null, "Já existe um modelo desse mouse no estoque.",
+                    "Modelo já cadastrado", 0);
+        } else {
+            mouse.setMarca(inputMarcaMou.getText());
+
+            try {
+                mouse.setPreco(Double.parseDouble(inputPrecoMou.getText()));
+                try {
+                    mouse.setQtd(Integer.parseInt(inputQtdMou.getText()));
+
+                    mouse.setDpiMou(inputDPIMou.getText());
+                    mouse.setFioMou(inputFIOMou.getText());
+                    mouse.setCorMou(inputCORMou.getText());
+                  
+                    if (sistema.cad(mouse)) {
+                        JOptionPane.showMessageDialog(null, "Mouse cadastrado com sucesso.",
+                                "Confirmação de cadastro", -1);
+                        limparMou();
+                    }
+
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "A quantidade do produto deve ser um número.", "Valor inválido",
+                            0);
+                }
+            } catch (NumberFormatException nfe) {
+                JOptionPane.showMessageDialog(null, "O preço do mouse deve ser um número.", "Valor inválido", 0);
+            }
+        }
+    }
+    
+    public void limparMou() {
+
+        inputModeloMou.setText("");
+        inputMarcaMou.setText("");
+        inputPrecoMou.setText("");
+        inputQtdMou.setText(""); 
+        inputDPIMou.setText("");
+        inputFIOMou.setText("");
+        inputCORMou.setText("");
+       
+        inputModeloMou.requestFocus();
+    }
+    
+    public void tabMou() {
+        DefaultTableModel modelo = (DefaultTableModel) jTable2.getModel();
+        modelo.setRowCount(0);
+        mouse = new Mouse();
+
+        for (int posLin = 0; posLin < BDEstoque.getInstance().getBdMouse().size(); posLin++) {
+            mouse.setModelo(BDEstoque.getInstance().getBdMouse().get(posLin).getModelo());
+            mouse.setMarca(BDEstoque.getInstance().getBdMouse().get(posLin).getMarca());
+            mouse.setPreco(BDEstoque.getInstance().getBdMouse().get(posLin).getPreco());
+            mouse.setQtd(BDEstoque.getInstance().getBdMouse().get(posLin).getQtd());
+
+            modelo.insertRow(posLin,
+                    new Object[] { mouse.getModelo(), mouse.getMarca(), mouse.getPreco(), mouse.getQtd() });
+        }
+    }
+    
+    public void clickTabMou() {
+
+        int linhaTab = jTable2.getSelectedRow();
+
+        mouse = new Mouse();
+
+        mouse = insereMou(linhaTab);
+
+        inputModeloMou.setText(mouse.getModelo());
+        inputMarcaMou.setText(mouse.getMarca());
+        inputPrecoMou.setText(String.valueOf(mouse.getPreco()));
+        inputQtdMou.setText(String.valueOf(mouse.getQtd())); 
+        inputDPIMou.setText(mouse.getDpiMou());
+        inputFIOMou.setText(mouse.getFioMou());
+        inputCORMou.setText(mouse.getCorMou());
+    }
+
+    public Mouse insereMou(int linhaTab) {
+
+        mouse = new Mouse();
+
+        mouse.setModelo(BDEstoque.getInstance().getBdMouse().get(linhaTab).getModelo());
+        mouse.setMarca(BDEstoque.getInstance().getBdMouse().get(linhaTab).getMarca());
+        mouse.setPreco(BDEstoque.getInstance().getBdMouse().get(linhaTab).getPreco());
+        mouse.setQtd(BDEstoque.getInstance().getBdMouse().get(linhaTab).getQtd());
+        mouse.setDpiMou(BDEstoque.getInstance().getBdMouse().get(linhaTab).getDpiMou());
+        mouse.setFioMou(BDEstoque.getInstance().getBdMouse().get(linhaTab).getFioMou());
+        mouse.setCorMou(BDEstoque.getInstance().getBdMouse().get(linhaTab).getCorMou());
+
+        return mouse;
+    }
+
+    public void delMou() {
+
+        mouse = new Mouse();
+
+        mouse.setModelo(inputModeloMou.getText());
+
+        if (sistema.cons(mou)) {
+            for (Mouse m : BDEstoque.getInstance().getBdMouse()) {
+                if (m.getModelo().equals(mouse.getModelo())) {
+                    mouse = m;
+                }
+            }
+
+            sistema.del(mouse);
+
+            JOptionPane.showMessageDialog(null, "Dados do mouse removidos.", "REMOÇÃO BEM SUCEDIDA", -1);
+            limparMou();
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Modelo de mouse não encontrado.", "MODELO INVÁLIDO", 0);
+        }
+
+    }
+    
+    public void attMou() {
+
+       mouse = new Mouse();
+
+        mouse.setModelo(inputModeloMou.getText());
+
+        if (sistema.cons(mouse)) {
+
+            mouse.setMarca(inputMarcaMou.getText());
+
+            try {
+                mouse.setPreco(Double.parseDouble(inputPrecoMou.getText()));
+                try {
+                    mouse.setQtd(Integer.parseInt(inputQtdMou.getText()));
+
+                    mouse.setDpiMou(inputDPIMou.getText());
+                    mouse.setFioMou(inputFIOMou.getText());
+                    mouse.setCorMou(inputCORMou.getText());
+              
+                    if (sistema.att(mouse)) {
+                        JOptionPane.showMessageDialog(null, "Mouse atualizado com sucesso.",
+                                "Confirmação de atualização", -1);
+                        limparMou();
+                    }
+
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "A quantidade do produto deve ser um número.", "Valor inválido",
+                            0);
+                }
+            } catch (NumberFormatException nfe) {
+                JOptionPane.showMessageDialog(null, "O preço do mouse deve ser um número.", "Valor inválido", 0);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Não existe um modelo desse nmouse no estoque.",
+                    "Modelo não encontrado", 0);
+        }
+    }
+
+    public void consultarMou() {
+        mouse = new Mouse();
+
+        mouse.setModelo(inputModeloMou.getText());
+
+        DefaultTableModel modelo = (DefaultTableModel) jTable2.getModel();
+        modelo.setRowCount(0);
+
+        if (sistema.cons(mouse)) {
+            for (Mouse m : BDEstoque.getInstance().getBdMouse()) {
+                if (m.getModelo().equals(mouse.getModelo())) {
+                    mouse = m;
+                }
+            }
+        }
+
+        modelo.insertRow(0,
+                new Object[] { mouse.getModelo(), mouse.getMarca(), mouse.getPreco(), mouse.getQtd() });
+    }
+
 
     /**
      * @param args the command line arguments
