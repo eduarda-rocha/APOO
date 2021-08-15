@@ -1,3 +1,4 @@
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,7 +14,7 @@ public class InterfaceEstoque extends javax.swing.JFrame {
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jFrame1 = new javax.swing.JFrame();
@@ -270,9 +271,7 @@ public class InterfaceEstoque extends javax.swing.JFrame {
                         .addGroup(painelNotebooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(painelNotebooksLayout.createSequentialGroup()
                                 .addGroup(painelNotebooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelNotebooksLayout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(8, 8, 8))
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelNotebooksLayout.createSequentialGroup()
                                         .addComponent(txtHDDNot)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -426,6 +425,11 @@ public class InterfaceEstoque extends javax.swing.JFrame {
                 "Modelo", "Marca", "Preço", "Quantidade"
             }
         ));
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable2);
         if (jTable2.getColumnModel().getColumnCount() > 0) {
             jTable2.getColumnModel().getColumn(0).setPreferredWidth(50);
@@ -435,12 +439,32 @@ public class InterfaceEstoque extends javax.swing.JFrame {
         }
 
         btConsultarMou.setText("CONSULTAR");
+        btConsultarMou.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btConsultarMouActionPerformed(evt);
+            }
+        });
 
         btCadastrarMou.setText("CADASTRAR");
+        btCadastrarMou.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCadastrarMouActionPerformed(evt);
+            }
+        });
 
         btRemoverMou.setText("REMOVER");
+        btRemoverMou.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRemoverMouActionPerformed(evt);
+            }
+        });
 
         btAtualizarMou.setText("ATUALIZAR");
+        btAtualizarMou.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAtualizarMouActionPerformed(evt);
+            }
+        });
 
         txtFIOMou.setText("FIO:");
 
@@ -582,40 +606,63 @@ public class InterfaceEstoque extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void btCadastrarNotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarNotActionPerformed
+    private void btCadastrarNotActionPerformed(java.awt.event.ActionEvent evt) {                                               
         cadastrarNot();
-    }//GEN-LAST:event_btCadastrarNotActionPerformed
+    }                                              
 
-    private void btAtualizarNotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtualizarNotActionPerformed
+    private void btAtualizarNotActionPerformed(java.awt.event.ActionEvent evt) {                                               
         attNot();
-    }//GEN-LAST:event_btAtualizarNotActionPerformed
+    }                                              
 
-    private void btRemoverNotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverNotActionPerformed
+    private void btRemoverNotActionPerformed(java.awt.event.ActionEvent evt) {                                             
         delNot();
-    }//GEN-LAST:event_btRemoverNotActionPerformed
+    }                                            
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
         tabNot();
-    }//GEN-LAST:event_formWindowOpened
+        tabMou();
+   
+    }                                 
 
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {                                     
         tabNot();
-    }//GEN-LAST:event_formWindowActivated
+        tabMou();
+    }                                    
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {                                     
         clickTabNot();
-    }//GEN-LAST:event_jTable1MouseClicked
+    }                                    
 
-    private void btSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSActionPerformed
+    private void btSActionPerformed(java.awt.event.ActionEvent evt) {                                    
         limparNot();
         tabNot();
-    }//GEN-LAST:event_btSActionPerformed
+    }                                   
 
-    private void btConsultarNotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsultarNotActionPerformed
+    private void btConsultarNotActionPerformed(java.awt.event.ActionEvent evt) {                                               
         consultarNot();
-    }//GEN-LAST:event_btConsultarNotActionPerformed
+    }                                              
+
+    private void btConsultarMouActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        consultarMou();
+    }                                              
+
+    private void btRemoverMouActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        delMou();
+    }                                            
+
+    private void btAtualizarMouActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        attMou();
+    }                                              
+
+    private void btCadastrarMouActionPerformed(java.awt.event.ActionEvent evt) {                                               
+       cadastrarMou();
+    }                                              
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {                                     
+        clickTabMou();
+    }                                    
 
     private void inputModeloNotActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_inputModeloNotActionPerformed
         // TODO add your handling code here:
@@ -711,21 +758,6 @@ public class InterfaceEstoque extends javax.swing.JFrame {
         }
     }
 
-    public void tabMou() {
-        DefaultTableModel modelo = (DefaultTableModel) jTable2.getModel();
-        modelo.setRowCount(0);
-        mouse = new Mouse();
-
-        for (int posLin = 0; posLin < BDEstoque.getInstance().getBdMouse().size(); posLin++) {
-            mouse.setModelo(BDEstoque.getInstance().getBdMouse().get(posLin).getModelo());
-            mouse.setMarca(BDEstoque.getInstance().getBdMouse().get(posLin).getMarca());
-            mouse.setPreco(BDEstoque.getInstance().getBdMouse().get(posLin).getPreco());
-            mouse.setQtd(BDEstoque.getInstance().getBdMouse().get(posLin).getQtd());
-
-            modelo.insertRow(posLin,
-                    new Object[] { mouse.getModelo(), mouse.getMarca(), mouse.getPreco(), mouse.getQtd() });
-        }
-    }
 
     public void clickTabNot() {
 
@@ -958,7 +990,7 @@ public class InterfaceEstoque extends javax.swing.JFrame {
 
         mouse.setModelo(inputModeloMou.getText());
 
-        if (sistema.cons(mou)) {
+        if (sistema.cons(mouse)) {
             for (Mouse m : BDEstoque.getInstance().getBdMouse()) {
                 if (m.getModelo().equals(mouse.getModelo())) {
                     mouse = m;
@@ -1078,7 +1110,7 @@ public class InterfaceEstoque extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton btAtualizarMou;
     private javax.swing.JButton btAtualizarNot;
     private javax.swing.JButton btCadastrarMou;
@@ -1138,5 +1170,5 @@ public class InterfaceEstoque extends javax.swing.JFrame {
     private javax.swing.JLabel txtSDDNot;
     private javax.swing.JLabel txtSONot;
     private javax.swing.JLabel txtVRAMNot;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }
