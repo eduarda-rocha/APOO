@@ -3,6 +3,7 @@ public class Notebook extends Produtos  {
 	private String soNot;
 	private String cpuNot;
 	private String ramNot;
+	private String vramNot;
 	private String hddNot;
 	private String ssdNot;
 	private String gpuNot;
@@ -24,6 +25,12 @@ public class Notebook extends Produtos  {
 	}
 	public void setRamNot(String ramNot) {
 		this.ramNot = ramNot;
+	}
+	public String getVramNot() {
+		return this.vramNot;
+	}
+	public void setVramNot(String vramNot) {
+		this.vramNot = vramNot;
 	}
 	public String getHddNot() {
 		return this.hddNot;
